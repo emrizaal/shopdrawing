@@ -4,6 +4,8 @@ class Example extends CI_Controller {
 
 	public function index()
     {
+
+    	// $this->load->view('pdf');
     
 	    //Load the library
 	    $this->load->library('html2pdf');
