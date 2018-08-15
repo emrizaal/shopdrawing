@@ -13,6 +13,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="<?=base_url()?>assets/dist/js/sb-admin-2.js"></script>
 
+    <script src="<?=base_url()?>assets/js/bootstrap-datepicker.min.js"></script>
+
 </body>
 
 </html>

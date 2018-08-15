@@ -25,16 +25,16 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Menu</a>
+                            <a href="<?=base_url('welcome/menu')?>"><i class="fa fa-dashboard fa-fw"></i> Menu</a>
                         </li>
                         <li>
-                            <a href="<?=base_url('shopdrawing')?>"><i class="fa fa-dashboard fa-fw"></i> Shop Drawing</a>
+                            <a href="<?=base_url('shopdrawing')?>"><i class="fa fa-image fa-fw"></i> Shop Drawing</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> As Build Drawing</a>
+                            <a href="index.html"><i class="fa fa-tasks fa-fw"></i> As Build Drawing</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Request Of Work</a>
+                            <a href="index.html"><i class="fa fa-truck fa-fw"></i> Request Of Work</a>
                         </li>
                     </ul>
                 </div>

@@ -25,6 +25,8 @@
 
     <link href="<?=base_url()?>assets/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
+    <link href="<?=base_url()?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+
 </head>
 
 <body>

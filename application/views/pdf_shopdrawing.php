@@ -127,17 +127,21 @@
 			<td>Status</td>
 			<td>Ref.Gambar No.</td>
 		</tr>
-		<?php 
-		$jum=1;
+		<?php
+		$no=1; 
+		foreach($data as $d){
 		?>
 		<tr class="br-all-td">
-			<td class="text-center">1</td>
-			<td>ST-RTW-09</td>
-			<td colspan="2">Plan dan koordinat retanning wall</td>
-			<td>Ro</td>
-			<td>Ref.Gambar No.</td>
+			<td class="text-center"><?=$no;?></td>
+			<td><?=$d['nomor_shop_drawing']?></td>
+			<td colspan="2"><?=$d['nama_shop_drawing']?></td>
+			<td><?=$d['status_gambar']?></td>
+			<td></td>
 		</tr>
 		<?php 
+		$no++;
+		}
+		$jum=1;
 		for($i=1;$i<(26-$jum);$i++){
 			?>
 			<tr class="br-all-td">
