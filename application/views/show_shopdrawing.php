@@ -65,7 +65,7 @@
 							<td><?=$d['tanggal_pengajuan']?></td>
 							<td><?=$d['tanggal_pembuatan']?></td>
 							<td><?=$d['nama']?></td>
-							<td><?=$d['status']?></td>
+							<td><?=$d['status']=='0' ? "<span class='label label-info'>Draft</span>" : "<span class='label label-success'>Diajukan</span>"?></td>
 							<td>
                 <a href="<?=base_url('Shopdrawing/editDokumen/'.$d['id_shopdrawing'])?>">Edit |</a>
                 <a href="<?=base_url('Shopdrawing/deleteDokumen/'.$d['id_shopdrawing'])?>">Hapus |</a>
