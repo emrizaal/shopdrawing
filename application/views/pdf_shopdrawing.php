@@ -5,12 +5,14 @@
 	<title>PDF Created</title>
 
 	<style type="text/css">
+	@page { margin: 5px; }
 
 	body {
 		background-color: #fff;
-		font-family: Lucida Grande, Verdana, Sans-serif;
+		font-family: "Times New Roman", Times, serif;
 		font-size: 14px;
 		color: #4F5155;
+		margin:5px;
 	}
 
 	a {

@@ -25,7 +25,7 @@
 	<!-- /.row -->
 	<div class="row">
 		<div class="col-sm-6">
-			<a href="<?=base_url('Reqwork/tambahRow')?>" class="btn btn-primary">Tambah Pekerjaan</a>
+			<a href="<?=base_url('Reqwork/tambahRow')?>" class="btn btn-primary">Tambah Request</a>
 		</div>
 	</div>
 	<div class="row" style="margin-top:30px;">
@@ -37,9 +37,7 @@
 						<th>Nomor RoW</th>
 						<th>Jenis</th>
 						<th>Uraian</th>
-						<th>Satuan</th>
-						<th>Kuantitas</th>
-						<th>Lokasi</th>
+						<th>Tanggal Dibuat</th>
 						<th>No Item</th>
 						<th>Aksi</th>
 					</tr>
@@ -54,11 +52,9 @@
 							<td><?=$d['no_request_of_work']?></td>
 							<td><?=$d['jenis_pekerjaan']?></td>
 							<td><?=$d['uraian_pekerjaan']?></td>
-							<td><?=$d['satuan_pekerjaan']?></td>
-							<td><?=$d['kuantitas_pekerjaan']?></td>
-							<td><?=$d['lokasi_pekerjaan']?></td>
+							<td><?=$d['date_created']?></td>
 							<td><?=$d['no_item']?></td>
-							<td>edit | delete | <a class="btn btn-xs btn-primary" href="<?=base_url('Reqwork/download/'.$d['id_request_of_work'])?>">Print</a></td>
+							<td><a href="<?=base_url('Reqwork/editRow/'.$d['id_request_of_work'])?>">edit</a> | delete | <a class="btn btn-xs btn-primary" href="<?=base_url('Reqwork/download/'.$d['id_request_of_work'])?>">Print</a></td>
 						</tr>
 					<?php $no++;} ?>
 				</tbody>

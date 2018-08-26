@@ -27,7 +27,8 @@ class Reqwork extends CI_Controller {
 			'satuan_pekerjaan'=>$p['satuan_pekerjaan'],
 			'kuantitas_pekerjaan'=>$p['kuantitas_pekerjaan'],
 			'lokasi_pekerjaan'=>$p['lokasi_pekerjaan'],
-			'no_item'=>$p['no_item']
+			'no_item'=>$p['no_item'],
+			'date_created'=>date('Y-m-d')
 		);
 		$res=$this->MReqwork->createWork($param);
 		if($res){
@@ -36,6 +37,11 @@ class Reqwork extends CI_Controller {
 			$this->session->set_flashdata('failed','Gagal menambah data');
 		}
 		redirect('Reqwork');
+	}
+
+	public function editRow($id){
+		$res['data']=$this->MReqwork->getReqwork($id);
+		$this->load->view('edit_row',$res);
 	}
 
 
