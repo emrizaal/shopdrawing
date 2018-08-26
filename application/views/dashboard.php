@@ -11,8 +11,8 @@
     <div class="row">
         <div class="col-lg-4 col-md-6">
             <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <a href="<?=base_url('Shopdrawing')?>" style="color:#fff;">
+                <div class="panel-heading">
+                    <a href="<?=base_url('Shopdrawing')?>" style="color:#fff;">
                         <div class="row">
                             <div class="col-xs-3">
                                 <i class="fa fa-image fa-5x"></i>
@@ -21,8 +21,8 @@
                                 <div class="huge">Shop Drawing</div>
                             </div>
                         </div>
-                        </a>
-                    </div>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
@@ -42,6 +42,7 @@
         <div class="col-lg-4 col-md-6">
             <div class="panel panel-yellow">
                 <div class="panel-heading">
+                    <a href="<?=base_url('Reqwork')?>" style="color:#fff;">
                     <div class="row">
                         <div class="col-xs-3">
                             <i class="fa fa-truck fa-5x"></i>
@@ -50,10 +51,11 @@
                             <div class="huge">Request Of Work</div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- /#page-wrapper -->
 

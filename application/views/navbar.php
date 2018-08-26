@@ -34,7 +34,7 @@
                             <a href="index.html"><i class="fa fa-tasks fa-fw"></i> As Build Drawing</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-truck fa-fw"></i> Request Of Work</a>
+                            <a href="<?=base_url('reqwork')?>"><i class="fa fa-truck fa-fw"></i> Request Of Work</a>
                         </li>
                         <li>
                             <a href="index.html"><i class="fa fa-users fa-fw"></i> Admin</a>

@@ -6,12 +6,11 @@ class Shopdrawing extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('MShopdrawing');
+		if(empty($this->session->userdata('username')))redirect('Welcome');
 	}
 
 	public function index()
 	{
-		if(empty($this->session->userdata('username')))redirect('Welcome');
-
 		$data['data']=$this->MShopdrawing->getAllDokumen();
     //print_r($data['data']);
 		$this->load->view('show_shopdrawing',$data);
