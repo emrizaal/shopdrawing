@@ -36,6 +36,9 @@
                         <li>
                             <a href="index.html"><i class="fa fa-truck fa-fw"></i> Request Of Work</a>
                         </li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-users fa-fw"></i> Admin</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

@@ -13,6 +13,7 @@ class Shopdrawing extends CI_Controller {
 		if(empty($this->session->userdata('username')))redirect('Welcome');
 
 		$data['data']=$this->MShopdrawing->getAllDokumen();
+    //print_r($data['data']);
 		$this->load->view('show_shopdrawing',$data);
 	}
 
@@ -32,9 +33,39 @@ class Shopdrawing extends CI_Controller {
 		}
 		redirect('Shopdrawing');
 	}
+  
+  public function editDokumen($id){ 
+		$data['dokumen']=$this->MShopdrawing->getShopdrawing($id);
+    $this->load->view('edit_shopdrawing',$data);
+  }
+  
+  public function prosesEditDokumen(){
+    $p=$this->input->post();
+		$param=array(
+      'id_shopdrawing'=>$p['id'],
+			'nomor_dokumen'=>$p['nomor_dokumen'],
+      'tanggal_pengajuan'=>$p['tanggal_pengajuan'],
+			'tanggal_pembuatan'=>$p['tanggal_pembuatan'],
+			'id_admin'=>$this->session->userdata('id_admin'),
+			'status'=>$p['status']
+		);
+		$res=$this->MShopdrawing->editDokumen($param);
+    // print_r($this->db->last_query()); die();
+		if($res){
+			$this->session->set_flashdata('success','Berhasil edit data');
+		}else{
+			$this->session->set_flashdata('failed','Gagal mengedit data');
+		}
+		redirect('Shopdrawing');
+  }
 
+  public function deleteDokumen($id){
+    $this->MShopdrawing->deleteDokumen($id);
+    redirect('Shopdrawing');
+  }
+  
 	public function detailDokumen($id){
-		$data['dokumen']=$this->MShopdrawing->getDokumen($id);
+    $data['dokumen']=$this->MShopdrawing->getDokumen($id);
 		$data['data']=$this->MShopdrawing->getAllDetailDokumen($id);
 		$this->load->view('detail_shop_drawing',$data);
 	}

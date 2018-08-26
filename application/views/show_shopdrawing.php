@@ -66,8 +66,10 @@
 							<td><?=$d['tanggal_pembuatan']?></td>
 							<td><?=$d['nama']?></td>
 							<td><?=$d['status']?></td>
-							<td>edit | delete | 
-								<a href="<?=base_url('Shopdrawing/detailDokumen/'.$d['id_shopdrawing'])?>">view</a></td>
+							<td>
+                <a href="<?=base_url('Shopdrawing/editDokumen/'.$d['id_shopdrawing'])?>">Edit |</a>
+                <a href="<?=base_url('Shopdrawing/deleteDokumen/'.$d['id_shopdrawing'])?>">Hapus |</a>
+								<a href="<?=base_url('Shopdrawing/detailDokumen/'.$d['id_shopdrawing'])?>">Detail</a></td>
 						</tr>
 					<?php $no++;} ?>
 				</tbody>
