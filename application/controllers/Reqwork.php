@@ -91,17 +91,47 @@ class Reqwork extends CI_Controller {
 		//Pembesian & Galian acan
 
 		if($file!=""){
-		$file_url = 'assets/xlsx/'.$file;
-		header('Content-Type: application/octet-stream');
-		header("Content-Transfer-Encoding: Binary"); 
-		header("Content-disposition: attachment; filename=\"" . basename($file_url) . "\""); 
-		readfile($file_url); 
-	}else{
-		$this->session->set_flashdata('failed','File tidak ditemukan');
+			$file_url = 'assets/xlsx/'.$file;
+			header('Content-Type: application/octet-stream');
+			header("Content-Transfer-Encoding: Binary"); 
+			header("Content-disposition: attachment; filename=\"" . basename($file_url) . "\""); 
+			readfile($file_url); 
+		}else{
+			$this->session->set_flashdata('failed','File tidak ditemukan');
+			redirect('Reqwork');
+		}
+	}
+
+	public function updateRow(){
+		$p=$this->input->post();
+		$param=array(
+			'id_request_of_work'=>$p['id_request_of_work'],
+			'no_request_of_work'=>$p['no_1'].'/bstr/seksi/'.$p['no_2'].'/'.$p['no_3'],
+			'jenis_pekerjaan'=>$p['jenis_pekerjaan'],
+			'uraian_pekerjaan'=>$p['uraian_pekerjaan'],
+			'satuan_pekerjaan'=>$p['satuan_pekerjaan'],
+			'kuantitas_pekerjaan'=>$p['kuantitas_pekerjaan'],
+			'lokasi_pekerjaan'=>$p['lokasi_pekerjaan'],
+			'no_item'=>$p['no_item'],
+			'date_created'=>date('Y-m-d')
+		);
+		$res=$this->MReqwork->updateWork($param);
+		if($res){
+			$this->session->set_flashdata('success','Berhasil mengubah data');
+		}else{
+			$this->session->set_flashdata('failed','Gagal mengubah data');
+		}
 		redirect('Reqwork');
 	}
 
-
+	public function deleteRow($id){
+		$res=$this->MReqwork->deleteRow($id);
+		if($res){
+			$this->session->set_flashdata('success','Berhasil menghapus data');
+		}else{
+			$this->session->set_flashdata('failed','Gagal menghapus data');
+		}
+		redirect('Reqwork');
 	}
 
 }
