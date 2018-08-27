@@ -28,6 +28,7 @@
         <div class="col-lg-4 col-md-6">
             <div class="panel panel-green">
                 <div class="panel-heading">
+                    <a href="<?=base_url('Builddrawing')?>" style="color:#fff;">
                     <div class="row">
                         <div class="col-xs-3">
                             <i class="fa fa-tasks fa-5x"></i>

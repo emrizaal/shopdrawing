@@ -18,7 +18,7 @@
 		<?php } ?>
 		
 		<div class="col-lg-12">
-			<h2 class="page-header">Dokumen Shop Drawing</h2>
+			<h2 class="page-header">Dokumen As Build Drawing</h2>
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
@@ -26,9 +26,9 @@
 	<div class="row">
 		<div class="col-sm-6">
 			<div class="panel panel-default">
-				<div class="panel-heading">Tambah Dokumen Shop Drawing</div>
+				<div class="panel-heading">Tambah Dokumen As Build Drawing</div>
 				<div class="panel-body">
-					<form action="<?=base_url('Shopdrawing/addDokumen')?>" method="POST">
+					<form action="<?=base_url('BuildDrawing/addDokumen')?>" method="POST">
 						<div class="input-group">
 							<input placeholder="Masukan Nomor Dokumen" type="text" name="nomor_dokumen" class="form-control" required="required">
 							<span class="input-group-btn">
@@ -67,14 +67,14 @@
 							<td><?=$d['nama']?></td>
 							<td><?=$d['status']=='0' ? "<span class='label label-info'>Draft</span>" : "<span class='label label-success'>Diajukan</span>"?></td>
 							<td>
-                <a href="<?=base_url('Shopdrawing/editDokumen/'.$d['id_shopdrawing'])?>">Edit |</a>
+                <a href="<?=base_url('Builddrawing/editDokumen/'.$d['id_as_build_drawing'])?>">Edit |</a>
                 <?php 
                   if($d['status']=='0'){ ?>
-                    <a href="<?=base_url('Shopdrawing/deleteDokumen/'.$d['id_shopdrawing'])?>">Hapus |</a>
+                    <a href="<?=base_url('Builddrawing/deleteDokumen/'.$d['id_as_build_drawing'])?>">Hapus |</a>
                   <?php }else{ ?>
                     Hapus |
                   <?php } ?>
-								<a href="<?=base_url('Shopdrawing/detailDokumen/'.$d['id_shopdrawing'])?>">Detail</a></td>
+								<a href="<?=base_url('Builddrawing/detailDokumen/'.$d['id_as_build_drawing'])?>">Detail</a></td>
 						</tr>
 					<?php $no++;} ?>
 				</tbody>
