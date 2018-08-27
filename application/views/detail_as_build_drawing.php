@@ -18,29 +18,28 @@
 		<?php } ?>
 		
 		<div class="col-lg-12">
-      <?php $idshopdrawing = $dokumen['id_shopdrawing']?>
-			<h3 class="page-header">Nomor Dokumen : <span style="color:steelblue;"><?=$dokumen['nomor_dokumen']?> | <?=$dokumen['id_shopdrawing']?></span></h3>
+      <?php
+        $idBuilddrawing = $dokumen['id_as_build_drawing'];
+      ?>
+			<h3 class="page-header">Nomor Dokumen : <span style="color:steelblue;"><?=$dokumen['nomor_dokumen']?></span></h3>
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
 	<!-- /.row -->
 	<div class="row">
 		<div class="col-lg-12">
-			<a href="<?=base_url('Shopdrawing/tambahGambar/'.$dokumen['id_shopdrawing'])?>" class="btn btn-primary" style="margin:10px auto;">Tambah Gambar</a>
+			<a href="<?=base_url('Builddrawing/tambahGambar/'.$dokumen['id_as_build_drawing'])?>" class="btn btn-primary">Tambah Gambar</a>
 			<div class="pull-right">
-				<!-- <a href="<?=base_url('Shopdrawing/preview/'.$dokumen['id_shopdrawing'])?>" class="btn btn-success">Preview</a> -->
-				<a href="<?=base_url('Shopdrawing/downloadFormRegistrasi/'.$dokumen['id_shopdrawing'])?>" class="btn btn-success"><span class="fa fa-print"> <b>Form Registrasi Gambar</b></span></a>
-				<a href="<?=base_url('Shopdrawing/downloadTransmital/'.$dokumen['id_shopdrawing'])?>" class="btn btn-info" style="margin:10px auto;"><span class="fa fa-print"> <b>Form Transmital</b></span></a>
-				<a href="<?=base_url('Shopdrawing/downloadTandaTerima/'.$dokumen['id_shopdrawing'])?>" class="btn btn-warning"><span class="fa fa-print"> <b>Form Tanda Terima Dokumen</b></span></a>
+				<a href="<?=base_url('Builddrawing/preview/'.$dokumen['id_as_build_drawing'])?>" class="btn btn-success">Preview</a>
+				<a href="<?=base_url('Builddrawing/print_preview/'.$dokumen['id_as_build_drawing'])?>" class="btn btn-warning"><span class="fa fa-print"> Print</span></a>
 			</div>
-			<div style="clear:both"></div>
 			<hr>
 			<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
 				<thead>
 					<tr>
 						<th>No</th>
 						<th>Nama</th>
-						<th>Nomor Shop Drawing</th>
+						<th>Nomor As Build Drawing</th>
 						<th>Tanggal</th>
 						<th>Status Gambar</th>
 						<th>Gambar Kembali</th>
@@ -55,15 +54,15 @@
 						?>
 						<tr class="gradeX">
 							<td><?=$no?></td>
-							<td><?=$d['nama_shop_drawing']?></td>
-							<td><?=$d['nomor_shop_drawing']?></td>
+							<td><?=$d['judul_gambar']?></td>
+							<td><?=$d['nomor_as_build_drawing']?></td>
 							<td><?=$d['tanggal']?></td>
 							<td><?=$d['status_gambar']?></td>
 							<td><?=$d['is_kembali']==0 ? 'Belum Kembali' : 'Telah Kembali'?></td>
 							<td><?=$d['tanggal_kembali']?></td>
 							<td>
                 <a href="">Edit |</a>
-                <a href="<?=base_url('Shopdrawing/deleteGambar/'.$d['id_detail_shop_drawing'].'/'.$idshopdrawing)?>">Hapus</a>
+                <a href="<?=base_url('Buildrawing/deleteGambar/'.$d['id_detail_as_build_drawing'].'/'.$idBuilddrawing)?>">Hapus</a>
               </td>
 						</tr>
 					<?php $no++;} ?>

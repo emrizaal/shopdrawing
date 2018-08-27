@@ -69,7 +69,7 @@ class Shopdrawing extends CI_Controller {
 	public function detailDokumen($id){
 		$data['dokumen']=$this->MShopdrawing->getDokumen($id);
 		$data['data']=$this->MShopdrawing->getAllDetailDokumen($id);
-		$this->load->view('detail_shop_drawing',$data);
+		$this->load->view('detail_shop_drawing',$data); 
 	}
 
 	public function tambahGambar($id){
@@ -94,6 +94,11 @@ class Shopdrawing extends CI_Controller {
 		}
 		redirect('Shopdrawing/detailDokumen/'.$p['id']);
 	}
+  
+  public function deleteGambar($id, $idshopdrawing){
+    $this->MShopdrawing->deleteGambar($id);
+    redirect('Shopdrawing/detailDokumen/'.$idshopdrawing);
+  }
 
 	public function preview($id){
 		$data['data']=$this->MShopdrawing->getAllDetailDokumen($id);

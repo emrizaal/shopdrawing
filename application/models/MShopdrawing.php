@@ -39,11 +39,15 @@ class MShopdrawing extends CI_Model {
   }
   
   function deleteDokumen($id){
-    $query=$this->db->query("DELETE from shopdrawing where id_shopdrawing = ".$id);
+    $query=$this->db->query("DELETE from shopdrawing WHEre id_shopdrawing = ".$id);
   }
   
 	function createGambar($p){
 		$this->db->insert('detail_shop_drawing',$p);
 		return $this->db->affected_rows();
 	}
+  
+  function deleteGambar($id){
+    $query = $this->db->query("DELETE from detail_shop_drawing WHERE id_detail_shop_drawing= ".$id);
+  }
 }
