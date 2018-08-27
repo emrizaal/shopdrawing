@@ -17,5 +17,16 @@ class MReqwork extends CI_Model {
 		$query=$this->db->query("SELECT * from request_of_work where id_request_of_work = ".$id);
 		return $query->row_array();
 	}
+
+	function updateWork($p){
+		$this->db->where('id_request_of_work', $p['id_request_of_work']);
+		$query=$this->db->update('request_of_work', $p); 
+		return $query;
+	}
+
+	function deleteRow($id){
+		$this->db->query("DELETE from request_of_work where id_request_of_work = ".$id);
+		return $this->db->affected_rows();
+	}
 	
 }

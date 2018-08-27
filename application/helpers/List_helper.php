@@ -247,7 +247,7 @@ function listNoItem(){
 				'-- Instaiasi Penangkal Petir Gerbang Tol',
 				'-- Penangkal Petir Lampu High Mast, Grounding  & Asesoris',
 				'-- Penyambungan daya Ke PLN 82, Jalan Utama',
-				'13.02)1) -- Pelindung Kabel',
+				'13.02.(1) -- Pelindung Kabel',
 				'13.02.(2) -- Rak kabel (Kabel Try)',
 				'13.02.(3) -- Galian Kabel'
 			)

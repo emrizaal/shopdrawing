@@ -26,9 +26,10 @@ $no = explode('/', $data['no_request_of_work']);
 <div id="page-wrapper">
 	<div class="row">
 		<div class="col-sm-12">
-			<h3>Tambah Request of Work</h3>
+			<h3>Edit Request of Work</h3>
 			<hr>
-			<form class="form-horizontal" action="<?=base_url('Reqwork/editWork')?>" method="POST">
+			<form class="form-horizontal" action="<?=base_url('Reqwork/updateRow')?>" method="POST">
+				<input type="hidden" name="id_request_of_work" value="<?=$data['id_request_of_work']?>">
 				<div class="form-group">
 					<label class="control-label col-sm-3" for="judul_gambar">No:</label>
 					<div class="col-sm-9">
@@ -76,7 +77,7 @@ $no = explode('/', $data['no_request_of_work']);
 				<div class="form-group">
 					<label class="control-label col-sm-3" for="kuantitas_pekerjaan">Kuantitas Pekerjaan</label>
 					<div class="col-sm-9">
-						<input type="text" class="" id="kuantitas_pekerjaan" name="kuantitas_pekerjaan" value="<?=$data['kuantitas_pekerjaan']?>"> <span class="satuan_pekerjaan_value"></span>
+						<input type="text" class="" id="kuantitas_pekerjaan" name="kuantitas_pekerjaan" value="<?=$data['kuantitas_pekerjaan']?>"> <span class="satuan_pekerjaan_value"><?=$data['satuan_pekerjaan']?></span>
 					</div>
 				</div>
 				<div class="form-group">
@@ -92,16 +93,21 @@ $no = explode('/', $data['no_request_of_work']);
 						<select id="browsers" class="form-control" name="no_item">
 							<option value="">-- Pilih No Item --</option>
 							<?php 
-							// $no_item=listNoItem();
-							// foreach($no_item $no){
+							$no_item=listNoItem();
+							foreach($no_item as $item){
 							?>
-							
-							<optgroup label="Bab 1 : UMUM">
-								<option></option>
-								<option></option>
-								<option></option>
-								<option></option>
+							<optgroup label="<?=$item['group']?>">
+								<?php 
+								foreach($item['member'] as $member){
+								?>
+								<option value="<?=$member?>" <?=$member==$data['no_item'] ? 'selected' : ''?>><?=$member?></option>
+								<?php 
+								}
+								?>
 							</optgroup>
+							<?php 
+							} 
+							?>
 						</select>
 					</div>
 				</div>
