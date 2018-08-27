@@ -22,7 +22,23 @@
 		<!-- /.col-lg-12 -->
 	</div>
 	<!-- /.row -->
-	
+		<div class="row">
+		<div class="col-sm-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">Tambah Dokumen As Build Drawing</div>
+				<div class="panel-body">
+					<form action="<?=base_url('BuildDrawing/addDokumen')?>" method="POST">
+						<div class="input-group">
+							<input placeholder="Masukan Nomor Dokumen" type="text" name="nomor_dokumen" class="form-control" required="required">
+							<span class="input-group-btn">
+								<button class="btn btn-primary" type="submit">Tambah</button>
+							</span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-lg-12">
 			<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
