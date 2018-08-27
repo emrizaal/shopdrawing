@@ -26,11 +26,14 @@
 	<!-- /.row -->
 	<div class="row">
 		<div class="col-lg-12">
-			<a href="<?=base_url('Shopdrawing/tambahGambar/'.$dokumen['id_shopdrawing'])?>" class="btn btn-primary">Tambah Gambar</a>
+			<a href="<?=base_url('Shopdrawing/tambahGambar/'.$dokumen['id_shopdrawing'])?>" class="btn btn-primary" style="margin:10px auto;">Tambah Gambar</a>
 			<div class="pull-right">
-				<a href="<?=base_url('Shopdrawing/preview/'.$dokumen['id_shopdrawing'])?>" class="btn btn-success">Preview</a>
-				<a href="<?=base_url('Shopdrawing/print_preview/'.$dokumen['id_shopdrawing'])?>" class="btn btn-warning"><span class="fa fa-print"> Print</span></a>
+				<!-- <a href="<?=base_url('Shopdrawing/preview/'.$dokumen['id_shopdrawing'])?>" class="btn btn-success">Preview</a> -->
+				<a href="<?=base_url('Shopdrawing/downloadFormRegistrasi/'.$dokumen['id_shopdrawing'])?>" class="btn btn-success"><span class="fa fa-print"> <b>Form Registrasi Gambar</b></span></a>
+				<a href="<?=base_url('Shopdrawing/downloadTransmital/'.$dokumen['id_shopdrawing'])?>" class="btn btn-info" style="margin:10px auto;"><span class="fa fa-print"> <b>Form Transmital</b></span></a>
+				<a href="<?=base_url('Shopdrawing/downloadTandaTerima/'.$dokumen['id_shopdrawing'])?>" class="btn btn-warning"><span class="fa fa-print"> <b>Form Tanda Terima Dokumen</b></span></a>
 			</div>
+			<div style="clear:both"></div>
 			<hr>
 			<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
 				<thead>

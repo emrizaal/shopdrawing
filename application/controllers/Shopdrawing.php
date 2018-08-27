@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Shopdrawing extends CI_Controller {
 
 	public function __construct(){
@@ -32,18 +35,18 @@ class Shopdrawing extends CI_Controller {
 		}
 		redirect('Shopdrawing');
 	}
-  
-  public function editDokumen($id){ 
+
+	public function editDokumen($id){ 
 		$data['dokumen']=$this->MShopdrawing->getShopdrawing($id);
-    $this->load->view('edit_shopdrawing',$data);
-  }
-  
-  public function prosesEditDokumen(){
-    $p=$this->input->post();
+		$this->load->view('edit_shopdrawing',$data);
+	}
+
+	public function prosesEditDokumen(){
+		$p=$this->input->post();
 		$param=array(
-      'id_shopdrawing'=>$p['id'],
+			'id_shopdrawing'=>$p['id'],
 			'nomor_dokumen'=>$p['nomor_dokumen'],
-      'tanggal_pengajuan'=>$p['tanggal_pengajuan'],
+			'tanggal_pengajuan'=>$p['tanggal_pengajuan'],
 			'tanggal_pembuatan'=>$p['tanggal_pembuatan'],
 			'id_admin'=>$this->session->userdata('id_admin'),
 			'status'=>$p['status']
@@ -56,15 +59,15 @@ class Shopdrawing extends CI_Controller {
 			$this->session->set_flashdata('failed','Gagal mengedit data');
 		}
 		redirect('Shopdrawing');
-  }
+	}
 
-  public function deleteDokumen($id){
-    $this->MShopdrawing->deleteDokumen($id);
-    redirect('Shopdrawing');
-  }
-  
+	public function deleteDokumen($id){
+		$this->MShopdrawing->deleteDokumen($id);
+		redirect('Shopdrawing');
+	}
+
 	public function detailDokumen($id){
-    $data['dokumen']=$this->MShopdrawing->getDokumen($id);
+		$data['dokumen']=$this->MShopdrawing->getDokumen($id);
 		$data['data']=$this->MShopdrawing->getAllDetailDokumen($id);
 		$this->load->view('detail_shop_drawing',$data); 
 	}
@@ -104,27 +107,104 @@ class Shopdrawing extends CI_Controller {
 
 	public function print_preview($id){
 		// $this->load->view('pdf');
-    
+
 	    //Load the library
-	    $this->load->library('html2pdf');
-	    
+		$this->load->library('html2pdf');
+
 	    //Set folder to save PDF to
-	    $this->html2pdf->folder('./assets/pdfs/');
-	    
+		$this->html2pdf->folder('./assets/pdfs/');
+
 	    //Set the filename to save/download as
-	    $this->html2pdf->filename('test.pdf');
-	    
+		$this->html2pdf->filename('test.pdf');
+
 	    //Set the paper defaults
-	    $this->html2pdf->paper('a4', 'portrait');
-	    
-	    $data['data']=$this->MShopdrawing->getAllDetailDokumen($id);
-	    
+		$this->html2pdf->paper('a4', 'portrait');
+
+		$data['data']=$this->MShopdrawing->getAllDetailDokumen($id);
+
 	    //Load html view
-	    $this->html2pdf->html($this->load->view('pdf_shopdrawing', $data, true));
-	    
-	    if($this->html2pdf->create('download')) {
+		$this->html2pdf->html($this->load->view('pdf_shopdrawing', $data, true));
+
+		if($this->html2pdf->create('download')) {
 	    	//PDF was successfully saved or downloaded
-	    	echo 'PDF saved';
-	    }
+			echo 'PDF saved';
+		}
 	}
+
+
+	public function downloadFormRegistrasi($id){
+		$data=$this->MShopdrawing->getAllDetailDokumen($id);
+		
+		//download file pertama
+		$name="Form PW-K3LMP-03-08 Registrasi Gambar Terkendali.xls";
+		$col=1;
+		$row=15;
+		$no=1;
+
+		$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load("assets/template/".$name);
+
+		$sheet = $spreadsheet->getActiveSheet();
+		foreach($data as $d){
+			$sheet->setCellValueByColumnAndRow($col,$row, $no);
+			$sheet->setCellValueByColumnAndRow($col+2,$row, $d['nama_shop_drawing']);
+			$sheet->setCellValueByColumnAndRow($col+7,$row, $d['tanggal']);
+			$sheet->setCellValueByColumnAndRow($col+11,$row, $d['nomor_shop_drawing']);
+			$sheet->setCellValueByColumnAndRow($col+18,$row, $d['status_gambar']);
+			$row++;
+			$no++;
+		}
+
+		$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'.$name.'"');
+		$writer->save("php://output");
+
+	}
+
+	public function downloadTandaTerima($id){
+		$dokumen=$this->MShopdrawing->getDokumen($id);
+		//download file kedua
+		$namekedua="Tanda_Terima_Dokumen.xls";
+		$file2col=1;
+		$file2row=22;
+		$nokedua=1;
+
+		$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load("assets/template/".$namekedua);
+
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('b22',$nokedua);
+		$sheet->setCellValue('d22','dokumen');
+
+		$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'.$namekedua.'"');
+		$writer->save("php://output");
+	}
+
+	public function downloadTransmital($id){
+		$data=$this->MShopdrawing->getAllDetailDokumen($id);
+
+		//download file ketiga
+		$nameketiga="Transmital.xlsx";
+		$file3col=2;
+		$file3row=14;
+		$noketiga=1;
+
+		$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load("assets/template/".$nameketiga);
+
+		$sheet = $spreadsheet->getActiveSheet();
+		foreach($data as $d){
+			$sheet->setCellValueByColumnAndRow($file3col,$file3row, $noketiga);
+			$sheet->setCellValueByColumnAndRow($file3col+1,$file3row, $d['nomor_shop_drawing']);
+			$sheet->setCellValueByColumnAndRow($file3col+6,$file3row, $d['nama_shop_drawing']);
+			$file3row++;
+			$noketiga++;
+		}
+
+		$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'.$nameketiga.'"');
+		$writer->save("php://output");
+	}
+
 }

@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Reqwork extends CI_Controller {
 
 	public function __construct(){
@@ -21,7 +24,7 @@ class Reqwork extends CI_Controller {
 	public function addWork(){
 		$p=$this->input->post();
 		$param=array(
-			'no_request_of_work'=>$p['no_1'].'/bstr/seksi/'.$p['no_2'].'/'.$p['no_3'],
+			'no_request_of_work'=>$p['no_1'].'/bstr/seksi1-2/'.$p['no_2'].'/'.$p['no_3'],
 			'jenis_pekerjaan'=>$p['jenis_pekerjaan'],
 			'uraian_pekerjaan'=>$p['uraian_pekerjaan'],
 			'satuan_pekerjaan'=>$p['satuan_pekerjaan'],
@@ -97,7 +100,7 @@ class Reqwork extends CI_Controller {
 			header("Content-disposition: attachment; filename=\"" . basename($file_url) . "\""); 
 			readfile($file_url); 
 		}else{
-			$this->session->set_flashdata('failed','File tidak ditemukan');
+			$this->session->set_flashdata('failed','Jenis pekerjaan tersebut tidak memiliki Form Checklist');
 			redirect('Reqwork');
 		}
 	}
@@ -106,7 +109,7 @@ class Reqwork extends CI_Controller {
 		$p=$this->input->post();
 		$param=array(
 			'id_request_of_work'=>$p['id_request_of_work'],
-			'no_request_of_work'=>$p['no_1'].'/bstr/seksi/'.$p['no_2'].'/'.$p['no_3'],
+			'no_request_of_work'=>$p['no_1'].'/bstr/seksi1-2/'.$p['no_2'].'/'.$p['no_3'],
 			'jenis_pekerjaan'=>$p['jenis_pekerjaan'],
 			'uraian_pekerjaan'=>$p['uraian_pekerjaan'],
 			'satuan_pekerjaan'=>$p['satuan_pekerjaan'],
@@ -132,6 +135,28 @@ class Reqwork extends CI_Controller {
 			$this->session->set_flashdata('failed','Gagal menghapus data');
 		}
 		redirect('Reqwork');
+	}
+
+	public function formRequest($id){
+		$data=$this->MReqwork->getReqwork($id);
+		//download file kedua
+		$namekedua="FORM REQUEST.xlsx";
+
+		$ex=explode('--', $data['no_item']);
+
+		$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load("assets/template/".$namekedua);
+
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('B20',$ex[0]);
+		$sheet->setCellValue('D20',$ex[1]);
+		$sheet->setCellValue('H20',$data['satuan_pekerjaan']);
+		$sheet->setCellValue('I20',$data['kuantitas_pekerjaan']);
+		$sheet->setCellValue('L20',$data['lokasi_pekerjaan']);
+
+		$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'.$namekedua.'"');
+		$writer->save("php://output");
 	}
 
 }
