@@ -1,4 +1,9 @@
 <?php $this->load->view('header')?>
+<style type="text/css">
+	.btn{
+		margin:5px;
+	}
+</style>
 <?php $this->load->view('navbar.php')?>    
 <div id="page-wrapper">
 	<div class="row">
@@ -39,6 +44,7 @@
 						<th>Uraian</th>
 						<th>Tanggal Dibuat</th>
 						<th>No Item</th>
+						<th>Download</th>
 						<th>Aksi</th>
 					</tr>
 				</thead>
@@ -54,10 +60,12 @@
 							<td><?=$d['uraian_pekerjaan']?></td>
 							<td><?=$d['date_created']?></td>
 							<td><?=$d['no_item']?></td>
+							<td><a class="btn btn-xs btn-success" href="<?=base_url('Reqwork/formRequest/'.$d['id_request_of_work'])?>"><span class="fa fa-send"></span> Form Request</a>
+								<a class="btn btn-xs btn-info" href="<?=base_url('Reqwork/download/'.$d['id_request_of_work'])?>"><span class="fa fa-th-list"></span> Check List</a></td>
 							<td>
 								<a class="btn btn-warning btn-xs" href="<?=base_url('Reqwork/editRow/'.$d['id_request_of_work'])?>">edit</a> 
 								<a class="btn btn-danger btn-xs" href="<?=base_url('Reqwork/deleteRow/'.$d['id_request_of_work'])?>" onclick="return confirm('Apakah Anda yakin akan menghapus ?');">delete</a> 
-								<a class="btn btn-xs btn-primary" href="<?=base_url('Reqwork/download/'.$d['id_request_of_work'])?>">Print</a></td>
+							</td>
 						</tr>
 					<?php $no++;} ?>
 				</tbody>

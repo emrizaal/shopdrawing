@@ -33,7 +33,30 @@ $no = explode('/', $data['no_request_of_work']);
 				<div class="form-group">
 					<label class="control-label col-sm-3" for="judul_gambar">No:</label>
 					<div class="col-sm-9">
-						<input type="text" name="no_1" size=4 value="<?=$no[0]?>"> /bstr/seksi/ <input type="text" name="no_2" size=4 value="<?=$no[3]?>"> / <input type="text" name="no_3" size=4 value="<?=$no[4]?>">
+						<input type="text" name="no_1" size=4 value="<?=$no[0]?>"> /bstr/seksi1-2/ 
+						<select name="no_2">
+							<?php
+							for($i=1;$i<13;$i++){
+								$date = $i;
+								if ($i < 10) {
+									$date = str_pad($i, 2, "0", STR_PAD_LEFT);
+								}
+								?>
+								<option value="<?=$date?>" <?=$date==$no[3] ? 'selected' : ''?>><?=$date?></option>
+								<?php 
+							}
+							?>
+						</select>
+						/ 
+						<select name="no_3">
+							<?php 
+							for($j=Date('Y')-5;$j<Date('Y')+5;$j++){
+								?>
+								<option value="<?=$j;?>" <?=$j==$no[4] ? 'selected' : ''?>><?=$j?></option>
+								<?php
+							}
+							?>
+						</select>
 					</div>
 				</div>
 				<div class="form-group">
@@ -90,22 +113,22 @@ $no = explode('/', $data['no_request_of_work']);
 					<label class="control-label col-sm-3" for="combobox">No Item</label>
 					<div class="col-sm-9">
 						<!-- <input list="browsers" name="browser" class="form-control"> -->
-						<select id="browsers" class="form-control" name="no_item">
+						<select class="form-control" name="no_item">
 							<option value="">-- Pilih No Item --</option>
 							<?php 
 							$no_item=listNoItem();
 							foreach($no_item as $item){
-							?>
-							<optgroup label="<?=$item['group']?>">
-								<?php 
-								foreach($item['member'] as $member){
 								?>
-								<option value="<?=$member?>" <?=$member==$data['no_item'] ? 'selected' : ''?>><?=$member?></option>
+								<optgroup label="<?=$item['group']?>">
+									<?php 
+									foreach($item['member'] as $member){
+										?>
+										<option value="<?=$member?>" <?=$member==$data['no_item'] ? 'selected' : ''?>><?=$member?></option>
+										<?php 
+									}
+									?>
+								</optgroup>
 								<?php 
-								}
-								?>
-							</optgroup>
-							<?php 
 							} 
 							?>
 						</select>
