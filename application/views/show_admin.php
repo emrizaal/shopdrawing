@@ -16,16 +16,13 @@
 				<?=$this->session->flashdata('failed');?>
 			</div>
 		<?php } ?>
-		
-		<div class="col-lg-12">
-			<h2 class="page-header">Daftar Admin </h2>    
-		</div>
+    <div class="col-lg-12">
+      <h2 class="page-header">Admin </h2>    
+    </div>
 		<!-- /.col-lg-12 -->
 	</div>
 	<!-- /.row -->
-	<div class="row">
-
-	</div>
+	
 	<div class="row">
 		<div class="col-lg-12">
 			<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
