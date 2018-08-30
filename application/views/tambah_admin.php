@@ -3,44 +3,32 @@
 <div id="page-wrapper">
 	<div class="row">
 		<div class="col-sm-12">
-			<h3>Tambah Gambar</h3>
+			<h3>Tambah Admin</h3>
 			<hr>
-			<form class="form-horizontal" action="<?=base_url('Shopdrawing/addGambar')?>" method="POST">
-				<input type="hidden" name="id" value="<?=$id?>">
+			<form class="form-horizontal" action="<?=base_url('Admin/addAdmin')?>" method="POST">
 				<div class="form-group">
-					<label class="control-label col-sm-3" for="judul_gambar">Judul Gambar:</label>
+					<label class="control-label col-sm-3" for="judul_gambar">Nama:</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="judul_gambar" placeholder="Masukkan Judul Gambar" name="judul_gambar">
+						<input type="text" class="form-control" id="judul_gambar" placeholder="Masukkan Nama" name="nama" autofocus>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-3" for="nomor_shop_drawing">Nomor Shop Drawing:</label>
+					<label class="control-label col-sm-3" for="nomor_shop_drawing">Username:</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="nomor_shop_drawing" placeholder="Masukkan Nomor Gambar" name="nomor_shop_drawing">
+						<input type="text" class="form-control" id="nomor_shop_drawing" placeholder="Masukkan Username" name="username">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-3" for="tanggal_gambar">Tanggal:</label>
+					<label class="control-label col-sm-3" for="tanggal_gambar">Password:</label>
 					<div class="col-sm-9">
-						<input type="date" class="form-control" id="tanggal_gambar" placeholder="Masukkan Tanggal" name="tanggal">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3" for="judul_gambar">Status Gambar:</label>
-					<div class="col-sm-9">
-						<div class="radio">
-							<label><input type="radio" name="status_gambar" value="Cons" checked>Cons</label>
-						</div>
-						<div class="radio">
-							<label><input type="radio" name="status_gambar" value="Inf">Inf</label>
-						</div>
+						<input type="password" class="form-control" id="tanggal_gambar" placeholder="Masukkan Password" name="password">
 					</div>
 				</div>
 				<hr>
 				<div class="form-group">        
 					<div class="col-sm-offset-3 col-sm-9">
 						<button type="submit" class="btn btn-primary">Simpan</button>
-						<a href="<?=base_url('Shopdrawing/detailDokumen/'.$id)?>" class="btn btn-default">Kembali</a>
+						<a href="<?=base_url('Admin')?>" class="btn btn-default">Kembali</a>
 					</div>
 				</div>
 			</form>

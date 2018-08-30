@@ -18,8 +18,13 @@
 		<?php } ?>
 		
 		<div class="col-lg-12">
-      <?php $idshopdrawing = $dokumen['id_shopdrawing']?>
-			<h3 class="page-header">Nomor Dokumen : <span style="color:steelblue;"><?=$dokumen['nomor_dokumen']?> | <?=$dokumen['id_shopdrawing']?></span></h3>
+			<ol class="breadcrumb" style="margin-top:20px;">
+				<li class="breadcrumb-item"><a href="<?=base_url('Welcome/menu')?>">Menu</a></li>
+				<li class="breadcrumb-item"><a href="<?=base_url('Shopdrawing')?>">Doc. Shop Drawing</a></li>
+				<li class="breadcrumb-item active"><?=$dokumen['nomor_dokumen']?></span></li>
+			</ol>
+			<?php $idshopdrawing = $dokumen['id_shopdrawing']?>
+			<h3 class="page-header">Nomor Dokumen : <span style="color:steelblue;"><?=$dokumen['nomor_dokumen']?></span></h3>
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
@@ -59,30 +64,30 @@
 							<td><?=$d['nomor_shop_drawing']?></td>
 							<td><?=$d['tanggal']?></td>
 							<td><?=$d['status_gambar']?></td>
-							<td><?=$d['is_kembali']==0 ? 'Belum Kembali' : 'Telah Kembali'?></td>
+							<td><?=$d['is_kembali']==0 ? "<span class='label label-warning'>Belum Kembali</span>" : "<span class='label label-success'>Telah Kembali</span>"?></td>
 							<td><?=$d['tanggal_kembali']?></td>
 							<td>
-                <a href="">Edit |</a>
-                <a href="<?=base_url('Shopdrawing/deleteGambar/'.$d['id_detail_shop_drawing'].'/'.$idshopdrawing)?>">Hapus</a>
-              </td>
-						</tr>
-					<?php $no++;} ?>
-				</tbody>
-			</table>
-			<!-- /.table-responsive -->
+								<a href="<?=base_url('Shopdrawing/editGambar/'.$d['id_detail_shop_drawing'])?>" class="btn btn-xs btn-default"><span class="fa fa-pencil"> Edit</span></a>
+								<a href="<?=base_url('Shopdrawing/deleteGambar/'.$d['id_detail_shop_drawing'].'/'.$idshopdrawing)?>" class="btn btn-xs btn-default" onclick="return confirm('Apakah Anda yakin akan menghapus ?');"><span class="fa fa-trash"> Hapus</span</a>
+								</td>
+							</tr>
+							<?php $no++;} ?>
+						</tbody>
+					</table>
+					<!-- /.table-responsive -->
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-<!-- /#page-wrapper -->
+		<!-- /#page-wrapper -->
 
-<?php $this->load->view('footer')?>
-<script src="<?=base_url()?>assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="<?=base_url()?>assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="<?=base_url()?>assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
-<script>
-	$(document).ready(function() {
-		$('#dataTables-example').DataTable({
-			responsive: true
-		});
-	});
-</script>
+		<?php $this->load->view('footer')?>
+		<script src="<?=base_url()?>assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+		<script src="<?=base_url()?>assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+		<script src="<?=base_url()?>assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('#dataTables-example').DataTable({
+					responsive: true
+				});
+			});
+		</script>

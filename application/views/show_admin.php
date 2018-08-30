@@ -16,37 +16,26 @@
 				<?=$this->session->flashdata('failed');?>
 			</div>
 		<?php } ?>
-    <div class="col-lg-12">
-      <h2 class="page-header">Admin </h2>    
-    </div>
+		<div class="col-lg-12">
+			<h2 class="page-header">Admin </h2>    
+		</div>
 		<!-- /.col-lg-12 -->
 	</div>
 	<!-- /.row -->
-		<div class="row">
+	<div class="row">
 		<div class="col-sm-6">
-			<div class="panel panel-default">
-				<div class="panel-heading">Tambah Dokumen As Build Drawing</div>
-				<div class="panel-body">
-					<form action="<?=base_url('BuildDrawing/addDokumen')?>" method="POST">
-						<div class="input-group">
-							<input placeholder="Masukan Nomor Dokumen" type="text" name="nomor_dokumen" class="form-control" required="required">
-							<span class="input-group-btn">
-								<button class="btn btn-primary" type="submit">Tambah</button>
-							</span>
-						</div>
-					</form>
-				</div>
-			</div>
+			<a href="<?=base_url('Admin/tambahAdmin')?>" class="btn btn-primary">Tambah Admin</a>
 		</div>
 	</div>
-	<div class="row">
+
+	<div class="row" style="margin-top:30px;">
 		<div class="col-lg-12">
 			<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
 				<thead>
 					<tr>
 						<th>No</th>
 						<th>Nama</th>
-						<th>Usernama</th>
+						<th>Username</th>
 						<th>Aksi</th>
 					</tr>
 				</thead>
@@ -59,29 +48,28 @@
 							<td><?=$no?></td>
 							<td><?=$d['nama']?></td>
 							<td><?=$d['username']?></td>
-              <td>
-                <a href="<?=base_url('Admin/editAdmin/'.$d['id_admin'])?>">Edit |</a>
-                <a href="<?=base_url('Admin/deleteAdmin/'.$d['id_admin'])?>">Hapus |</a>
-								<a href="<?=base_url('Admin/detailAdmin/'.$d['id_admin'])?>">Detail</a>
-              </td>
+							<td>
+								<a class="btn btn-xs btn-warning" href="<?=base_url('Admin/editAdmin/'.$d['id_admin'])?>">Edit</a> |
+								<a class="btn btn-xs btn-danger" href="<?=base_url('Admin/deleteAdmin/'.$d['id_admin'])?>" onclick="return confirm('Apakah Anda yakin akan menghapus ?');">Hapus</a>
+							</td>
 						</tr>
-					<?php $no++;} ?>
-				</tbody>
-			</table>
-			<!-- /.table-responsive -->
+						<?php $no++;} ?>
+					</tbody>
+				</table>
+				<!-- /.table-responsive -->
+			</div>
 		</div>
 	</div>
-</div>
-<!-- /#page-wrapper -->
+	<!-- /#page-wrapper -->
 
-<?php $this->load->view('footer')?>
-<script src="<?=base_url()?>assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="<?=base_url()?>assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="<?=base_url()?>assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
-<script>
-	$(document).ready(function() {
-		$('#dataTables-example').DataTable({
-			responsive: true
+	<?php $this->load->view('footer')?>
+	<script src="<?=base_url()?>assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="<?=base_url()?>assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+	<script src="<?=base_url()?>assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#dataTables-example').DataTable({
+				responsive: true
+			});
 		});
-	});
-</script>
+	</script>

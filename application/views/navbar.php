@@ -36,9 +36,15 @@
                         <li>
                             <a href="<?=base_url('reqwork')?>"><i class="fa fa-truck fa-fw"></i> Request Of Work</a>
                         </li>
+                        <?php 
+                        if($this->session->userdata('is_super')=='1'){
+                        ?>
                         <li>
                             <a href="<?=base_url('admin')?>"><i class="fa fa-users fa-fw"></i> Admin</a>
                         </li>
+                        <?php 
+                        }  
+                        ?>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

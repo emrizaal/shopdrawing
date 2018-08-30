@@ -29,15 +29,14 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-3" for="pembuat">Pembuat:</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="pembuat" name="pembuat" value="<?php echo $dokumen['nama']; ?>">
-          </div>
-        </div>
-        <div class="form-group">
           <label class="control-label col-sm-3" for="status">Status:</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="status" name="status" value="<?php echo $dokumen['status']?>">
+            <label class="radio-inline">
+              <input type="radio" name="status" value="0" <?=$dokumen['status']=='0' ? 'checked' : ''?>> Draft
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="status" value="1" <?=$dokumen['status']=='1' ? 'checked' : ''?>>  Diajukan
+            </label>
           </div>
         </div>
 				<hr>

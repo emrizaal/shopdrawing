@@ -54,7 +54,7 @@ class Shopdrawing extends CI_Controller {
 		$res=$this->MShopdrawing->editDokumen($param);
     // print_r($this->db->last_query()); die();
 		if($res){
-			$this->session->set_flashdata('success','Berhasil edit data');
+			$this->session->set_flashdata('success','Berhasil mengedit data');
 		}else{
 			$this->session->set_flashdata('failed','Gagal mengedit data');
 		}
@@ -94,11 +94,39 @@ class Shopdrawing extends CI_Controller {
 		}
 		redirect('Shopdrawing/detailDokumen/'.$p['id']);
 	}
-  
-  public function deleteGambar($id, $idshopdrawing){
-    $this->MShopdrawing->deleteGambar($id);
-    redirect('Shopdrawing/detailDokumen/'.$idshopdrawing);
-  }
+
+	public function editGambar($id){
+		$data['id']=$id;
+		$data['data']=$this->MShopdrawing->getGambar($id);
+		$this->load->view('edit_gambar',$data);
+	}
+
+	public function updateGambar(){
+		$p=$this->input->post();
+		$param=array(
+			'id_detail_shop_drawing'=>$p['id_detail_shop_drawing'],
+			'nama_shop_drawing'=>$p['nama_shop_drawing'],
+			'nomor_shop_drawing'=>$p['nomor_shop_drawing'],
+			'tanggal'=>$p['tanggal'],
+			'status_gambar'=>$p['status_gambar'],
+			'is_kembali'=>$p['is_kembali']
+		);
+		if($p['is_kembali']==1){
+			$param['tanggal_kembali']=$p['tanggal_kembali'];
+		}
+		$res=$this->MShopdrawing->updateGambar($param);
+		if($res){
+			$this->session->set_flashdata('success','Berhasil mengedit data');
+		}else{
+			$this->session->set_flashdata('failed','Gagal mengedit data');
+		}
+		redirect('Shopdrawing/detailDokumen/'.$p['id']);
+	}
+
+	public function deleteGambar($id, $idshopdrawing){
+		$this->MShopdrawing->deleteGambar($id);
+		redirect('Shopdrawing/detailDokumen/'.$idshopdrawing);
+	}
 
 	public function preview($id){
 		$data['data']=$this->MShopdrawing->getAllDetailDokumen($id);

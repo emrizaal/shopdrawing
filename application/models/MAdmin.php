@@ -8,8 +8,8 @@ class MAdmin extends CI_Model {
 		$query=$this->db->query($sql,array($username,$password));
 		return $query->row_array();
 	}
-  
-  function createAdmin($p){
+
+	function createAdmin($p){
 		$this->db->insert('admin',$p);
 		return $this->db->affected_rows();
 	}
@@ -23,14 +23,21 @@ class MAdmin extends CI_Model {
 		$query=$this->db->query("SELECT * from admin");
 		return $query->result_array();
 	}
-  
-  function editAdmin($param){
-    $query=$this->db->query("UPDATE admin SET name='$param[name]', username='$param[username]', password='$param[password]' WHERE id_admin='$param[id_admin]'");
-    return $query;
-  }
-  
-  function deleteAdmin($id){
-    $query=$this->db->query("DELETE from admin WHERE id_admin = ".$id);
-  }
-  
+
+	function updateAdmin($p){
+		$this->db->where('id_admin', $p['id_admin']);
+		$query=$this->db->update('admin', $p); 
+		return $query;
+	}
+
+	function deleteAdmin($id){
+		$query=$this->db->query("DELETE from admin WHERE id_admin = ".$id);
+	}
+
+	function getSuperAdmin($username,$password){
+		$sql="SELECT * from superadmin where username = ? AND password = MD5(?)";
+		$query=$this->db->query($sql,array($username,$password));
+		return $query->row_array();
+	}
+
 }

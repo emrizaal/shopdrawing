@@ -147,6 +147,7 @@ class Reqwork extends CI_Controller {
 		$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load("assets/template/".$namekedua);
 
 		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('B16','No : '.$data['no_request_of_work']);
 		$sheet->setCellValue('B20',$ex[0]);
 		$sheet->setCellValue('D20',$ex[1]);
 		$sheet->setCellValue('H20',$data['satuan_pekerjaan']);
