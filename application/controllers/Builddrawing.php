@@ -185,18 +185,24 @@ class Builddrawing extends CI_Controller {
 	}
 
 	public function downloadTandaTerima($id){
-		$dokumen=$this->MShopdrawing->getDokumen($id);
+		$dokumen=$this->MBuilddrawing->getAllDetailDokumen($id);
 		//download file kedua
-		$namekedua="Tanda_Terima_Dokumen.xls";
-		$file2col=1;
+		$namekedua="Tanda-Terima-Dokumen.xlsx";
+		$file2col=2;
 		$file2row=22;
 		$nokedua=1;
 
 		$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load("assets/template/".$namekedua);
 
 		$sheet = $spreadsheet->getActiveSheet();
-		$sheet->setCellValue('b22',$nokedua);
-		$sheet->setCellValue('d22','dokumen');
+		foreach ($dokumen as $doc) {
+			$sheet->setCellValueByColumnAndRow($file2col,$file2row, $nokedua);
+			$sheet->setCellValueByColumnAndRow($file2col+2,$file2row, $doc['nama_shop_drawing']);
+			$sheet->setCellValueByColumnAndRow($file2col+7,$file2row, '1');
+			$sheet->setCellValueByColumnAndRow($file2col+8,$file2row, 'Bundel');
+			$file2row++;
+			$nokedua++;
+		}
 
 		$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
