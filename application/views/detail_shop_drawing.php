@@ -31,7 +31,11 @@
 	<!-- /.row -->
 	<div class="row">
 		<div class="col-lg-12">
-			<a href="<?=base_url('Shopdrawing/tambahGambar/'.$dokumen['id_shopdrawing'])?>" class="btn btn-primary" style="margin:10px auto;">Tambah Gambar</a>
+			<?php if($this->session->userdata('is_super')=='1'){?>
+        <a class="btn btn-primary disabled" style="margin:10px auto;">Tambah Gambar</a>
+      <?php }else{ ?>
+        <a href="<?=base_url('builddrawing/tambahGambar/'.$dokumen['id_as_build_drawing'])?>" class="btn btn-primary" style="margin:10px auto;">Tambah Gambar</a>
+      <?php } ?>
 			<div class="pull-right">
 				<!-- <a href="<?=base_url('Shopdrawing/preview/'.$dokumen['id_shopdrawing'])?>" class="btn btn-success">Preview</a> -->
 				<a href="<?=base_url('Shopdrawing/downloadFormRegistrasi/'.$dokumen['id_shopdrawing'])?>" class="btn btn-success"><span class="fa fa-print"> <b>Form Registrasi Gambar</b></span></a>
@@ -67,14 +71,19 @@
 							<td><?=$d['is_kembali']==0 ? "<span class='label label-warning'>Belum Kembali</span>" : "<span class='label label-success'>Telah Kembali</span>"?></td>
 							<td><?=$d['tanggal_kembali']?></td>
 							<td>
-								<a href="<?=base_url('Shopdrawing/editGambar/'.$d['id_detail_shop_drawing'])?>" class="btn btn-xs btn-default"><span class="fa fa-pencil"> Edit</span></a>
-								<a href="<?=base_url('Shopdrawing/deleteGambar/'.$d['id_detail_shop_drawing'].'/'.$idshopdrawing)?>" class="btn btn-xs btn-default" onclick="return confirm('Apakah Anda yakin akan menghapus ?');"><span class="fa fa-trash"> Hapus</span</a>
-								</td>
-							</tr>
-							<?php $no++;} ?>
-						</tbody>
-					</table>
-					<!-- /.table-responsive -->
+                <?php  if($this->session->userdata('is_super')=='1'){ ?>
+                  <a class="btn btn-xs btn-default disabled"><span class="fa fa-pencil"> Edit</span></a>
+                  <a class="btn btn-xs btn-default disabled"><span class="fa fa-trash"> Hapus</span></a>
+                <?php }else{?>
+                  <a href="<?=base_url('Shopdrawing/editGambar/'.$d['id_detail_shop_drawing'])?>" class="btn btn-xs btn-default"><span class="fa fa-pencil"> Edit</span></a>
+                  <a href="<?=base_url('Shopdrawing/deleteGambar/'.$d['id_detail_shop_drawing'].'/'.$idshopdrawing)?>" class="btn btn-xs btn-default" onclick="return confirm('Apakah Anda yakin akan menghapus ?');"><span class="fa fa-trash"> Hapus</span</a>
+                <?php } ?>
+							</td>
+						</tr>
+            <?php $no++;} ?>
+          </tbody>
+        </table>
+        <!-- /.table-responsive -->
 				</div>
 			</div>
 		</div>

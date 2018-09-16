@@ -31,8 +31,12 @@
 	<!-- /.row -->
 	<div class="row">
 		<div class="col-lg-12">
-			<a href="<?=base_url('builddrawing/tambahGambar/'.$dokumen['id_as_build_drawing'])?>" class="btn btn-primary" style="margin:10px auto;">Tambah Gambar</a>
-			<div class="pull-right">
+			<?php if($this->session->userdata('is_super')=='1'){?>
+        <a class="btn btn-primary disabled" style="margin:10px auto;">Tambah Gambar</a>
+      <?php }else{ ?>
+        <a href="<?=base_url('builddrawing/tambahGambar/'.$dokumen['id_as_build_drawing'])?>" class="btn btn-primary" style="margin:10px auto;">Tambah Gambar</a>
+      <?php } ?>
+      <div class="pull-right">
 				<a href="<?=base_url('builddrawing/downloadFormRegistrasi/'.$dokumen['id_as_build_drawing'])?>" class="btn btn-success"><span class="fa fa-print"> <b>Form Registrasi Gambar</b></span></a>
 				<a href="<?=base_url('builddrawing/downloadTransmital/'.$dokumen['id_as_build_drawing'])?>" class="btn btn-info" style="margin:10px auto;"><span class="fa fa-print"> <b>Form Transmital</b></span></a>
 				<a href="<?=base_url('Shopdrawing/downloadTandaTerima/'.$dokumen['id_as_build_drawing'])?>" class="btn btn-warning"><span class="fa fa-print"> <b>Form Tanda Terima Dokumen</b></span></a>
@@ -66,10 +70,15 @@
 							<td><?=$d['is_kembali']==0 ? "<span class='label label-warning'>Belum Kembali</span>" : "<span class='label label-success'>Telah Kembali</span>"?></td>
 							<td><?=$d['tanggal_kembali']?></td>
 							<td>
-								<a href="<?=base_url('builddrawing/editGambar/'.$d['id_detail_as_build_drawing'])?>" class="btn btn-xs btn-default"><span class="fa fa-pencil"> Edit</span></a>
-								<a href="<?=base_url('builddrawing/deleteGambar/'.$d['id_detail_as_build_drawing'].'/'.$id_asbuilddrawing)?>" class="btn btn-xs btn-default" onclick="return confirm('Apakah Anda yakin akan menghapus ?');"><span class="fa fa-trash"> Hapus</span</a>
-								</td>
-							</tr>
+								<?php  if($this->session->userdata('is_super')=='1'){ ?>
+                  <a class="btn btn-xs btn-default disabled"><span class="fa fa-pencil"> Edit</span></a>
+                  <a class="btn btn-xs btn-default disabled"><span class="fa fa-trash"> Hapus</span></a>
+                <?php }else{?>
+                  <a href="<?=base_url('builddrawing/editGambar/'.$d['id_detail_as_build_drawing'])?>" class="btn btn-xs btn-default"><span class="fa fa-pencil"> Edit</span></a>
+                  <a href="<?=base_url('builddrawing/deleteGambar/'.$d['id_detail_as_build_drawing'].'/'.$id_asbuilddrawing)?>" class="btn btn-xs btn-default" onclick="return confirm('Apakah Anda yakin akan menghapus ?');"><span class="fa fa-trash"> Hapus</span</a>
+                <?php } ?>
+							</td>
+						</tr>
 							<?php $no++;} ?>
 						</tbody>
 					</table>

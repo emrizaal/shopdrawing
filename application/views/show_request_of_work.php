@@ -30,7 +30,11 @@
 	<!-- /.row -->
 	<div class="row">
 		<div class="col-sm-6">
-			<a href="<?=base_url('Reqwork/tambahRow')?>" class="btn btn-primary">Tambah Request</a>
+			<?php if($this->session->userdata('is_super')=='1'){?>
+        <a href="<?=base_url('Reqwork/tambahRow')?>" class="btn btn-primary disabled">Tambah Request</a>
+      <?php } else { ?>
+        <a href="<?=base_url('Reqwork/tambahRow')?>" class="btn btn-primary">Tambah Request</a>
+      <?php } ?>
 		</div>
 	</div>
 	<div class="row" style="margin-top:30px;">
@@ -63,8 +67,13 @@
 							<td><a class="btn btn-xs btn-success" href="<?=base_url('Reqwork/formRequest/'.$d['id_request_of_work'])?>"><span class="fa fa-send"></span> Form Request</a>
 								<a class="btn btn-xs btn-info" href="<?=base_url('Reqwork/download/'.$d['id_request_of_work'])?>"><span class="fa fa-th-list"></span> Check List</a></td>
 							<td>
-								<a class="btn btn-warning btn-xs" href="<?=base_url('Reqwork/editRow/'.$d['id_request_of_work'])?>">edit</a> 
-								<a class="btn btn-danger btn-xs" href="<?=base_url('Reqwork/deleteRow/'.$d['id_request_of_work'])?>" onclick="return confirm('Apakah Anda yakin akan menghapus ?');">delete</a> 
+                <?php if($this->session->userdata('is_super')=='1'){?>
+                  <a class="btn btn-warning btn-xs disabled" href="<?=base_url('Reqwork/editRow/'.$d['id_request_of_work'])?>">edit</a> 
+                  <a class="btn btn-danger btn-xs disabled" href="<?=base_url('Reqwork/deleteRow/'.$d['id_request_of_work'])?>">delete</a> 
+                <?php } else {?>
+                  <a class="btn btn-warning btn-xs" href="<?=base_url('Reqwork/editRow/'.$d['id_request_of_work'])?>">edit</a> 
+                  <a class="btn btn-danger btn-xs" href="<?=base_url('Reqwork/deleteRow/'.$d['id_request_of_work'])?>" onclick="return confirm('Apakah Anda yakin akan menghapus ?');">delete</a> 
+                <?php } ?>
 							</td>
 						</tr>
 					<?php $no++;} ?>

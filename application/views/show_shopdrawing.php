@@ -32,14 +32,25 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Tambah Dokumen Shop Drawing</div>
 				<div class="panel-body">
-					<form action="<?=base_url('Shopdrawing/addDokumen')?>" method="POST">
-						<div class="input-group">
-							<input placeholder="Masukan Nomor Dokumen" type="text" name="nomor_dokumen" class="form-control" required="required">
-							<span class="input-group-btn">
-								<button class="btn btn-primary" type="submit">Tambah</button>
-							</span>
-						</div>
-					</form>
+          <?php if($this->session->userdata('is_super')=='1'){?>
+            <form action="<?=base_url('Shopdrawing/addDokumen')?>" method="POST">
+              <div class="input-group">
+                <input placeholder="Masukan Nomor Dokumen" type="text" name="nomor_dokumen" class="form-control" required="required" disabled>
+                <span class="input-group-btn">
+                  <button class="btn btn-primary disabled" type="submit">Tambah</button>
+                </span>
+              </div>
+            </form>
+          <?php } else { ?>
+            <form action="<?=base_url('Shopdrawing/addDokumen')?>" method="POST">
+              <div class="input-group">
+                <input placeholder="Masukan Nomor Dokumen" type="text" name="nomor_dokumen" class="form-control" required="required">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="submit">Tambah</button>
+                </span>
+              </div>
+            </form>
+          <?php } ?>
 				</div>
 			</div>
 		</div>
@@ -71,20 +82,25 @@
 							<td><?=$d['nama']?></td>
 							<td><?=$d['status']=='0' ? "<span class='label label-info'>Draft</span>" : "<span class='label label-success'>Diajukan</span>"?></td>
 							<td>
-								<a class="btn btn-xs btn-default" href="<?=base_url('Shopdrawing/editDokumen/'.$d['id_shopdrawing'])?>"><span class="fa fa-pencil"> Edit</span></a>
-								<?php 
-								if($d['status']=='0'){ ?>
-									<a class="btn btn-xs btn-default" href="<?=base_url('Shopdrawing/deleteDokumen/'.$d['id_shopdrawing'])?>" onclick="return confirm('Apakah Anda yakin akan menghapus ?');"><span class="fa fa-trash"> Hapus</span></a>
-								<?php } ?>
-								<a class="btn btn-xs btn-default" href="<?=base_url('Shopdrawing/detailDokumen/'.$d['id_shopdrawing'])?>"><span class="fa fa-info-circle"> Detail</span></a></td>
-							</tr>
-							<?php $no++;} ?>
-						</tbody>
-					</table>
-					<!-- /.table-responsive -->
-				</div>
-			</div>
-		</div>
+								<?php if($this->session->userdata('is_super')=='1'){?>
+                   <a class="btn btn-xs btn-default disabled" href=""><span class="fa fa-pencil"> Edit</span></a>
+                   <a class="btn btn-xs btn-default disabled" href=""><span class="fa fa-trash"> Hapus</span></a>
+                <?php } else { ?>
+                  <a class="btn btn-xs btn-default" href="<?=base_url('Shopdrawing/editDokumen/'.$d['id_shopdrawing'])?>"><span class="fa fa-pencil"> Edit</span></a>
+                  <?php if($d['status']=='0'){ ?>
+                    <a class="btn btn-xs btn-default" href="<?=base_url('Shopdrawing/deleteDokumen/'.$d['id_shopdrawing'])?>" onclick="return confirm('Apakah Anda yakin akan menghapus ?');"><span class="fa fa-trash"> Hapus</span></a>
+                  <?php } ?>
+                <?php } ?>
+                <a class="btn btn-xs btn-default" href="<?=base_url('Shopdrawing/detailDokumen/'.$d['id_shopdrawing'])?>"><span class="fa fa-info-circle"> Detail</span></a>
+              </td>
+            </tr>
+            <?php $no++;} ?>
+        </tbody>
+      </table>
+      <!-- /.table-responsive -->
+    </div>
+  </div>
+</div>
 		<!-- /#page-wrapper -->
 
 		<?php $this->load->view('footer')?>
