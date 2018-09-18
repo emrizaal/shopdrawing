@@ -48,8 +48,10 @@ class Builddrawing extends CI_Controller {
 			'nomor_dokumen'=>$p['nomor_dokumen'],
 			'tanggal_pengajuan'=>$p['tanggal_pengajuan'],
 			'tanggal_pembuatan'=>$p['tanggal_pembuatan'],
-			'id_admin'=>$this->session->userdata('id_admin'),
-			'status'=>$p['status']
+			'id_admin'=>$p['id_admin'],
+			'status'=>$p['status'],
+      'tanggal_edit'=>date("Y-m-d"),
+      'edit_oleh'=>$this->session->userdata('id_admin')
 		);
 		$res=$this->MBuilddrawing->editDokumen($param);
     // print_r($this->db->last_query()); die();
@@ -109,7 +111,9 @@ class Builddrawing extends CI_Controller {
 			'nomor_as_build_drawing'=>$p['nomor_shop_drawing'],
 			'tanggal'=>$p['tanggal'],
 			'status_gambar'=>$p['status_gambar'],
-			'is_kembali'=>$p['is_kembali']
+			'is_kembali'=>$p['is_kembali'],
+      'tanggal_edit'=>date("Y-m-d"),
+      'edit_oleh'=>$this->session->userdata('id_admin')
 		);
 		if($p['is_kembali']==1){
 			$param['tanggal_kembali']=$p['tanggal_kembali'];

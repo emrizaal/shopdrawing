@@ -116,7 +116,9 @@ class Reqwork extends CI_Controller {
 			'kuantitas_pekerjaan'=>$p['kuantitas_pekerjaan'],
 			'lokasi_pekerjaan'=>$p['lokasi_pekerjaan'],
 			'no_item'=>$p['no_item'],
-			'date_created'=>date('Y-m-d')
+			'date_created'=>date('Y-m-d'),
+      'tanggal_edit'=>date("Y-m-d"),
+      'edit_oleh'=>$this->session->userdata('id_admin')
 		);
 		$res=$this->MReqwork->updateWork($param);
 		if($res){

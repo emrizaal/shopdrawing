@@ -34,7 +34,7 @@ class MBuilddrawing extends CI_Model {
 	}
 
 	function editDokumen($param){
-		$query=$this->db->query("UPDATE as_build_drawing SET nomor_dokumen='$param[nomor_dokumen]', tanggal_pengajuan='$param[tanggal_pengajuan]', tanggal_pembuatan='$param[tanggal_pembuatan]', id_admin='$param[id_admin]', status='$param[status]' WHERE id_as_build_drawing='$param[id_as_build_drawing]'");
+		$query=$this->db->query("UPDATE as_build_drawing SET nomor_dokumen='$param[nomor_dokumen]', tanggal_pengajuan='$param[tanggal_pengajuan]', tanggal_pembuatan='$param[tanggal_pembuatan]', id_admin='$param[id_admin]', status='$param[status]', tanggal_edit='$param[tanggal_edit]', edit_oleh='$param[edit_oleh]' WHERE id_as_build_drawing='$param[id_as_build_drawing]'");
 		return $query;
 	}
 

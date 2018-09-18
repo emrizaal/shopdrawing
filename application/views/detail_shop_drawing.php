@@ -34,7 +34,7 @@
 			<?php if($this->session->userdata('is_super')=='1'){?>
         <a class="btn btn-primary disabled" style="margin:10px auto;">Tambah Gambar</a>
       <?php }else{ ?>
-        <a href="<?=base_url('builddrawing/tambahGambar/'.$dokumen['id_as_build_drawing'])?>" class="btn btn-primary" style="margin:10px auto;">Tambah Gambar</a>
+        <a href="<?=base_url('Shopdrawing/tambahGambar/'.$dokumen['id_shopdrawing'])?>" class="btn btn-primary" style="margin:10px auto;">Tambah Gambar</a>
       <?php } ?>
 			<div class="pull-right">
 				<!-- <a href="<?=base_url('Shopdrawing/preview/'.$dokumen['id_shopdrawing'])?>" class="btn btn-success">Preview</a> -->

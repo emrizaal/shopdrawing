@@ -28,6 +28,7 @@
             <input type="date" class="form-control" id="tanggal_pembuatan" name="tanggal_pembuatan" value="<?php echo $dokumen['tanggal_pembuatan']; ?>">
           </div>
         </div>
+        <input type="hidden" name="id_admin" value="<?= $dokumen['id_admin'];?>">
         <div class="form-group">
           <label class="control-label col-sm-3" for="status">Status:</label>
           <div class="col-sm-9">
